@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "build": "cd frontend && ng build --prod && cd ..",
-    "serve": "cd frontend && ng serve && cd .."
+    "serve": "cd frontend && ng serve && cd ..",
+    "heroku-postbuild": "cd frontend && npm install"
   },
   "repository": {
     "type": "git",

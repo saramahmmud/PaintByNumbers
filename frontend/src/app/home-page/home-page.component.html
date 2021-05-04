@@ -1,0 +1,9 @@
+<main>
+    <h1>Paint by Numbers</h1>
+    <p>Upload your images here!</p>
+    <label class="button1">
+        Click here!
+        <input (change)="imageUploaded($event)" type="file" accept="image/*">
+    </label>
+    <app-image-display [imageSrc]="uploadedImage"></app-image-display>
+</main>

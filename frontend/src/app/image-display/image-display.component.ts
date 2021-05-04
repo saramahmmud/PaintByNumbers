@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { PalGenService } from '../pal-gen.service';
+import { Color, PalGenService } from '../pal-gen.service';
 
 @Component({
   selector: 'app-image-display',
@@ -10,9 +10,9 @@ export class ImageDisplayComponent {
 
   constructor(private palette: PalGenService) { }
 
-  // @Input() imageSrc?: string;
-
   @ViewChild("canvas") canvas!: ElementRef;
+
+  colors: Color[] = [];
 
   _imageSrc?: string;
 
@@ -27,7 +27,7 @@ export class ImageDisplayComponent {
       return;
     }
     const image = new Image();
-    image.onload = () => {
+    image.onload = async () => {
       if (!this.canvas) {
         return;
       }
@@ -35,7 +35,7 @@ export class ImageDisplayComponent {
       this.canvas.nativeElement.height = image.height;
       ctx.drawImage(image, 0, 0);
 
-      this.palette.generatePalette(this.canvas.nativeElement);
+      this.colors = await this.palette.generatePalette(this.canvas.nativeElement, 6) ?? [];
     };
 
     image.src = x;

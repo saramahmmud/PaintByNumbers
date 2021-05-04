@@ -1,2 +1,5 @@
 <!-- <img *ngIf="imageSrc" [src]="imageSrc"/> -->
 <canvas #canvas [ngClass]="{hide: !imageSrc}"></canvas>
+<div class="palette">
+    <div *ngFor="let color of colors" [ngStyle]="{backgroundColor: 'hsl('+color.h+'deg, '+color.s+'%, '+color.l+'%)'}"></div>
+</div>
